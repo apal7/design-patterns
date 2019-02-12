@@ -29,5 +29,5 @@ public class PrototypeApplication2 {
             System.out.println("Rectangle objects are the same (booo!)");
         }
     }
-    
+
 }
