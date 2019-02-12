@@ -1,4 +1,4 @@
-package com.apal.designpatterns.singleton;
+package com.apal.designpatterns.singleton.singlethreaded;
 
 
 public final class Singleton {

@@ -1,7 +1,4 @@
-package com.apal.designpatterns.singleton;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+package com.apal.designpatterns.singleton.singlethreaded;
 
 
 public class SingletonApplication {
