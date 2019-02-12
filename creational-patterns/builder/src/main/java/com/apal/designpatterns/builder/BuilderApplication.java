@@ -1,13 +1,39 @@
 package com.apal.designpatterns.builder;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.apal.designpatterns.builder.builder.CarBuilder;
+import com.apal.designpatterns.builder.builder.CarManualBuilder;
+import com.apal.designpatterns.builder.car.Car;
+import com.apal.designpatterns.builder.car.Manual;
+import com.apal.designpatterns.builder.director.Director;
 
-@SpringBootApplication
+
+
 public class BuilderApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BuilderApplication.class, args);
+
+		Director director = new Director();
+
+		// Director gets the concrete builder object from the client
+		// (application code). That's because application knows better which
+		// builder to use to get a specific product.
+		CarBuilder builder = new CarBuilder();
+		director.constructSportsCar(builder);
+
+		// The final product is often retrieved from a builder object, since
+		// Director is not aware and not dependent on concrete builders and
+		// products.
+		Car car = builder.getResult();
+		System.out.println("Car built:\n" + car.getType());
+
+
+		CarManualBuilder manualBuilder = new CarManualBuilder();
+
+		// Director may know several building recipes.
+		director.constructSportsCar(manualBuilder);
+		Manual carManual = manualBuilder.getResult();
+		System.out.println("\nCar manual built:\n" + carManual.print());
+
 	}
 
 }
