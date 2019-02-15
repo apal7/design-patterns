@@ -1,14 +1,16 @@
 package com.apal.designpatterns.state;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+import com.apal.designpatterns.state.ui.Player;
+import com.apal.designpatterns.state.ui.UI;
+
 public class StateApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(StateApplication.class, args);
-	}
+        Player player = new Player();
+        UI ui = new UI(player);
+        ui.init();
+    }
 
 }
 
