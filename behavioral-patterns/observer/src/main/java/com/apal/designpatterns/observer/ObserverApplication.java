@@ -1,14 +1,24 @@
 package com.apal.designpatterns.observer;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+import com.apal.designpatterns.observer.editor.Editor;
+import com.apal.designpatterns.observer.listeners.EmailNotificationListener;
+import com.apal.designpatterns.observer.listeners.LogOpenListener;
+
 public class ObserverApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ObserverApplication.class, args);
-	}
+        Editor editor = new Editor();
+        editor.events.subscribe("open", new LogOpenListener("/path/to/log/file.txt"));
+        editor.events.subscribe("save", new EmailNotificationListener("admin@example.com"));
+
+        try {
+            editor.openFile("test.txt");
+            editor.saveFile();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }
 
