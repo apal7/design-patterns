@@ -1,14 +1,36 @@
 package com.apal.designpatterns.memento;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+import com.apal.designpatterns.memento.editor.Editor;
+import com.apal.designpatterns.memento.shape.Circle;
+import com.apal.designpatterns.memento.shape.Rectangle;
+import com.apal.designpatterns.memento.shape.CompoundShape;
+import com.apal.designpatterns.memento.shape.Dot;
+
+import java.awt.*;
+
 public class MementoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MementoApplication.class, args);
-	}
+        Editor editor = new Editor();
+        editor.loadShapes(
+                new Circle(10, 10, 10, Color.BLUE),
+
+                new CompoundShape(
+                        new Circle(110, 110, 50, Color.RED),
+                        new Dot(160, 160, Color.RED)
+                ),
+
+                new CompoundShape(
+                        new Rectangle(250, 250, 100, 100, Color.GREEN),
+                        new Dot(240, 240, Color.GREEN),
+                        new Dot(240, 360, Color.GREEN),
+                        new Dot(360, 360, Color.GREEN),
+                        new Dot(360, 240, Color.GREEN)
+                )
+        );
+
+    }
 
 }
 
